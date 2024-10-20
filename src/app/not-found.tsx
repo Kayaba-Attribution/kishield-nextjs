@@ -14,7 +14,7 @@ export default function NotFound() {
         </CardHeader>
         <CardContent>
           <p className="mb-4">
-            Looks like this page got lost in the blockchain. Maybe it's stuck in
+            Looks like this page got lost in the blockchain. Maybe it&apos;s stuck in
             a transaction that never confirmed. 🤷‍♂️
           </p>
           <Link href="/" passHref>

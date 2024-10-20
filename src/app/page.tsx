@@ -71,7 +71,6 @@ const auditProcess = [
   "Follow-up Support",
 ];
 
-
 export default function Home() {
   return (
     <div className="bg-gradient-to-r from-base-100 via-base-100/90 to-base-100 min-h-screen">

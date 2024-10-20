@@ -1,4 +1,6 @@
-import React from "react";
+"use client";
+import React, { useEffect, useRef } from "react";
+import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { ArrowRight, Shield, DollarSign, Clock } from "lucide-react";
@@ -9,7 +11,30 @@ const stats = [
   { title: "Hour Turnaround", value: "24-48", icon: Clock },
 ];
 
+const partners = [
+  { name: "Pinksale", logo: "/partners/Pinksale.svg" },
+  { name: "Polygon", logo: "/partners/PolygonMatic.svg" },
+  { name: "BSC", logo: "/partners/bsc.svg" },
+  { name: "Ethereum", logo: "/partners/eth.svg" },
+  { name: "CoinGecko", logo: "/partners/CoinGecko.svg" },
+  { name: "CoinMarketCap", logo: "/partners/CoinMarketCap.svg" },
+];
+
 export default function HeroSection() {
+  const logoRef = useRef<HTMLUListElement>(null);
+
+  useEffect(() => {
+    if (logoRef.current) {
+      const ul = logoRef.current;
+      ul.insertAdjacentHTML('afterend', ul.outerHTML);
+      const nextSibling = ul.nextElementSibling as HTMLElement;
+      if (nextSibling) {
+        nextSibling.setAttribute('aria-hidden', 'true');
+      }
+    }
+  }, []);
+
+
   return (
     <section className="py-12 sm:py-20 text-center">
       <div className="container mx-auto px-4">
@@ -21,7 +46,7 @@ export default function HeroSection() {
           audits, blockchain security, and cutting-edge Web3 development
           solutions.
         </p>
-        <div className="flex flex-col sm:flex-row justify-center items-center space-y-2 sm:space-y-0 sm:space-x-4 mb-8  mx-20 animate-fade-in-delay-2">
+        <div className="flex flex-col sm:flex-row justify-center items-center space-y-2 sm:space-y-0 sm:space-x-4 mb-8 mx-20 animate-fade-in-delay-2">
           {stats.map((stat, index) => (
             <Badge
               key={index}
@@ -50,6 +75,30 @@ export default function HeroSection() {
           >
             Explore Services
           </Button>
+        </div>
+      </div>
+      
+      {/* Partners and Supported Chains */}
+      <div className="mt-16">
+        <h2 className="text-xl md:text-2xl font-bold text-center mb-2 animate-fade-in-delay-3">
+          Our Partners and Supported Chains
+        </h2>
+        <div className="max-w-4xl mx-auto overflow-hidden">
+          <div className="w-full inline-flex flex-nowrap overflow-hidden [mask-image:_linear-gradient(to_right,transparent_0,_black_128px,_black_calc(100%-128px),transparent_100%)]">
+            <ul ref={logoRef} className="flex items-center justify-center space-x-16 animate-infinite-scroll">
+              {partners.map((partner, index) => (
+                <li key={index} className="flex items-center justify-center w-24 h-24">
+                  <Image 
+                    src={partner.logo} 
+                    alt={`${partner.name} Logo`} 
+                    width= {180} 
+                    height={180} 
+                    className="max-w-full max-h-full object-contain"
+                  />
+                </li>
+              ))}
+            </ul>
+          </div>
         </div>
       </div>
     </section>

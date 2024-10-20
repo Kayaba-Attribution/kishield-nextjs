@@ -156,20 +156,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Partners and Supported Chains */}
-      <section className="py-16">
-        <div className="container mx-auto px-4">
-          <h2 className="text-4xl font-bold text-center mb-12">Our Partners and Supported Chains</h2>
-          <div className="flex flex-wrap justify-center items-center">
-            {partners.map((partner, index) => (
-              <div key={index} className="m-4">
-                <Image src={partner.logo} alt={`${partner.name} Logo`} width={100} height={100} />
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
       {/* Team Highlights */}
       <section className="py-16 bg-base-200">
         <div className="container mx-auto px-4">
